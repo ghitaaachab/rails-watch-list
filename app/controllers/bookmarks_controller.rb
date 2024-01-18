@@ -5,8 +5,11 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
-    @bookmark.save
-    redirect_to bookmark_path(@bookmark)
+    if @bookmark.save
+      redirect_to bookmark_path(@bookmark)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -17,6 +20,6 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:content)
+    params.require(:bookmark).permit(:comment)
   end
 end
