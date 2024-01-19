@@ -7,3 +7,9 @@
     <li><%=link_to list.name, list_path(list) %></li>
   <% end %>
 </ul>
+
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li><%= link_to "Delete a bookmark" %> </li>
+  <% end %>
+</ul>
